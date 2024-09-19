@@ -62,3 +62,20 @@ body {
     padding: 0;
   }
 }
+
+.canvasSettings {
+  position: fixed;
+  right: 16px;
+  top: 80%;
+  transform: translateY(-50%);
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: #343232;
+  padding: 24px 8px;
+  border-radius: 4px;
+  text-align: left;
+  &:empty {
+    padding: 0;
+  }
+}

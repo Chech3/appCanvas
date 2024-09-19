@@ -5,11 +5,12 @@ import "./App.css";
 import { IconButton } from "blocksin-system";
 import { BsCircle, BsSquare } from "react-icons/bs";
 import Settings from "./settings";
-
+import CanvasSettings from "./CanvasSettings";
+import { handleObjectMoving, clearGuideLines } from "./SnappingHelpers";
 const CanvasApp = () => {
   const canvasRef = useRef(null);
   const [canvas, setCanvas] = useState(null);
-
+  const [guidelines, setGuideLines] = useState([]);
 
   const addRectangle = () => {
     if (canvas) {
@@ -36,6 +37,7 @@ const CanvasApp = () => {
     }
   };
 
+
   useEffect(() => {
     if (canvasRef.current) {
       const initCanvas = new Canvas(canvasRef.current, {
@@ -47,6 +49,11 @@ const CanvasApp = () => {
       initCanvas.renderAll();
 
       setCanvas(initCanvas);
+
+      initCanvas.on("object:moving", (e) => handleObjectMoving(initCanvas, e.target, guidelines, setGuideLines))
+
+
+      initCanvas.on("object:modified", () => clearGuideLines(initCanvas, guidelines, setGuideLines))
 
       return () => {
         initCanvas.dispose();
@@ -67,6 +74,7 @@ const CanvasApp = () => {
 
       <canvas id='canvas' ref={canvasRef} />
       <Settings canvas={canvas} />
+      <CanvasSettings canvas={canvas} />
     </div>)
 }
 
