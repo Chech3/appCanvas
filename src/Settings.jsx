@@ -13,19 +13,25 @@ const Settings = ({ canvas }) => {
 
         setSelectedObject(object);
 
+        console.log(object.type)
+
         if (object.type === "rect") {
-            const width = object.width * object.scaleX; 
-            const height = object.height * object.scaleY; 
+            const width = object.width * object.scaleX;
+            const height = object.height * object.scaleY;
             setWidthOption(Math.round(width));
             setHeightOption(Math.round(height));
             setColor(object.fill || "");
             setDiameter("");
         } else if (object.type === "circle") {
-            const dia = object.radius * 2 * object.scaleX; 
+            const dia = object.radius * 2 * object.scaleX;
             setDiameter(Math.round(dia));
             setColor(object.fill || "");
             setWidthOption("");
             setHeightOption("");
+        } else if (object.type === "line") { // Detección de la línea
+            setWidthOption(Math.round(object.strokeWidth)); // Grosor de la línea
+            setColor(object.stroke); // Color de la línea
+            setDiameter(""); // Limpiar opciones de círculo
         }
     };
 
@@ -64,7 +70,7 @@ const Settings = ({ canvas }) => {
         } else {
             setHeightOption("");
         }
-        
+
     };
     const handleDiameterChange = (e) => {
         const value = e.target.value.replace(/, /g, "");
@@ -80,11 +86,25 @@ const Settings = ({ canvas }) => {
         setColor(value);
 
         if (selectedObject) {
-            selectedObject.set({ fill: value });
+            if (selectedObject.type === 'line') {
+                selectedObject.set({ stroke: value }); // Cambio de color en la línea
+            } else {
+                selectedObject.set({ fill: value });
+            }
             canvas.renderAll();
         }
     };
 
+    const handleLineWidthChange = (e) => {
+        const value = e.target.value.replace(/,/g, "");
+        const intValue = parseInt(value, 10);
+        setWidthOption(intValue);
+
+        if (selectedObject && selectedObject.type === "line" && intValue >= 0) {
+            selectedObject.set({ strokeWidth: intValue });
+            canvas.renderAll();
+        }
+    };
 
     useEffect(() => {
         if (canvas) {
@@ -125,6 +145,13 @@ const Settings = ({ canvas }) => {
                     {/* <Input placeholder="Height" type="number" onChange={handlHeightChange} fluid label="Height" value={heightOption} /> */}
                     <Input placeholder="Diameter" type="number" onChange={handleDiameterChange} fluid label="Diameter" value={diameter} />
                     <Input type="color" onChange={handleColorChange} fluid label="Color" value={color} />
+                </>
+            )}
+
+            {selectedObject && selectedObject?.type === 'line' && (
+                <>
+                    <Input type="number" onChange={handleLineWidthChange} fluid label="Line Width" value={widthOption} />
+                    <Input type="color" onChange={handleColorChange} fluid label="Line Color" value={color} />
                 </>
             )}
         </div>

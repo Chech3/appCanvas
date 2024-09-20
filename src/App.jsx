@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { Canvas, Rect, Circle, Line } from "fabric";
 import "./App.css";
 import { IconButton } from "blocksin-system";
-import { BsCircle, BsSquare, BsFillTrash3Fill, BsDashLg, BsFillPencilFill  } from "react-icons/bs";
+import { BsCircle, BsSquare, BsFillTrash3Fill, BsFillPencilFill } from "react-icons/bs";
 import Settings from "./settings";
 import CanvasSettings from "./CanvasSettings";
 import { handleObjectMoving, clearGuideLines } from "./SnappingHelpers";
@@ -54,7 +54,7 @@ const CanvasApp = () => {
   };
 
 
- 
+
 
   useEffect(() => {
     if (canvas) {
@@ -145,7 +145,7 @@ const CanvasApp = () => {
       <div className="toolBar darkmode">
 
         <IconButton onClick={toggleDrawingLine} variant={isDrawingLine ? "solid" : "ghost"} size="medium">
-         <BsFillPencilFill style={{ color: "white" }} />
+          <BsFillPencilFill style={{ color: "white" }} />
         </IconButton>
         <IconButton onClick={addRectangle} variant="ghost" size="medium">
           <BsSquare style={{ color: "white" }} />
@@ -156,7 +156,6 @@ const CanvasApp = () => {
         <IconButton onClick={clearCanvas} variant="ghost" size="medium">
           <BsFillTrash3Fill style={{ color: "white" }} />
         </IconButton>
-
       </div>
 
       <canvas id='canvas' ref={canvasRef} />
