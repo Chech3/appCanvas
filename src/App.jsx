@@ -2,11 +2,16 @@
 import { useState, useEffect, useRef } from "react";
 import { Canvas, Rect, Circle, Line } from "fabric";
 import "./App.css";
-import { IconButton } from "blocksin-system";
+import Input from '@mui/joy/Input';
+import Card from '@mui/joy/Card';
+import Button from '@mui/joy/Button';
 import { BsCircle, BsSquare, BsFillTrash3Fill, BsFillPencilFill } from "react-icons/bs";
 import Settings from "./settings";
 import CanvasSettings from "./CanvasSettings";
 import { handleObjectMoving, clearGuideLines } from "./SnappingHelpers";
+
+
+
 const CanvasApp = () => {
   const canvasRef = useRef(null);
   const [canvas, setCanvas] = useState(null);
@@ -144,18 +149,18 @@ const CanvasApp = () => {
     <div className="App">
       <div className="toolBar darkmode">
 
-        <IconButton onClick={toggleDrawingLine} variant={isDrawingLine ? "solid" : "ghost"} size="medium">
-          <BsFillPencilFill style={{ color: "white" }} />
-        </IconButton>
-        <IconButton onClick={addRectangle} variant="ghost" size="medium">
-          <BsSquare style={{ color: "white" }} />
-        </IconButton>
-        <IconButton onClick={addCircle} variant="ghost" size="medium">
-          <BsCircle style={{ color: "white" }} />
-        </IconButton>
-        <IconButton onClick={clearCanvas} variant="ghost" size="medium">
-          <BsFillTrash3Fill style={{ color: "white" }} />
-        </IconButton>
+        <Button style={{ backgroundColor: isDrawingLine ? "#9e8482" : "#5f5655", color: isDrawingLine ? "#000000" : "#fff" }} className="button-hover" onClick={toggleDrawingLine} variant="contained" size="lg">
+          <BsFillPencilFill  />
+        </Button>
+        <Button style={{ backgroundColor: "#5f5655" }} className="button-hover" variant="contained" size="lg" onClick={addRectangle}>
+          <BsSquare />
+        </Button>
+        <Button style={{ backgroundColor: "#5f5655" }} className="button-hover" variant="contained" size="lg" onClick={addCircle}>
+          <BsCircle />
+        </Button>
+        <Button style={{ backgroundColor: "#5f5655" }} className="button-hover" variant="contained" size="lg" onClick={clearCanvas}>
+          <BsFillTrash3Fill />
+        </Button>
       </div>
 
       <canvas id='canvas' ref={canvasRef} />

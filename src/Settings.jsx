@@ -1,5 +1,8 @@
-import { Input } from "blocksin-system";
 import { useState, useEffect } from "react"
+import Input from '@mui/joy/Input';
+import FormLabel from '@mui/joy/FormLabel';
+import FormControl from '@mui/joy/FormControl';
+
 const Settings = ({ canvas }) => {
     const [selectedObject, setSelectedObject] = useState(null);
     const [widthOption, setWidthOption] = useState("");
@@ -133,25 +136,47 @@ const Settings = ({ canvas }) => {
         <div className="settings darkmode">
             {selectedObject && selectedObject.type === "rect" && (
                 <>
-                    <Input placeholder="Width" type="number" onChange={handleWidthChange} fluid label="Width" value={widthOption} />
-                    <Input placeholder="Height" type="number" onChange={handlHeightChange} fluid label="Height" value={heightOption} />
-                    <Input type="color" onChange={handleColorChange} fluid label="Color" value={color} />
+                    <FormControl>
+                        <FormLabel style={{ color: "white" }}>Width</FormLabel>
+                        <Input placeholder="Width" type="number" onChange={handleWidthChange} label="Width" value={widthOption} />
+                    </FormControl>
+
+                    <FormControl>
+                        <FormLabel style={{ color: "white" }}>Height</FormLabel>
+                        <Input placeholder="Height" type="number" onChange={handlHeightChange} label="Height" value={heightOption} />
+                    </FormControl>
+                    <FormControl>
+                        <FormLabel style={{ color: "white" }}>Color</FormLabel>
+                        <Input type="color" onChange={handleColorChange} label="Color" value={color} />
+                    </FormControl>
                 </>
             )}
 
             {selectedObject && selectedObject.type === "circle" && (
                 <>
-                    {/* <Input placeholder="Width" type="number" onChange={handleWidthChange} fluid label="Width" value={widthOption} /> */}
-                    {/* <Input placeholder="Height" type="number" onChange={handlHeightChange} fluid label="Height" value={heightOption} /> */}
-                    <Input placeholder="Diameter" type="number" onChange={handleDiameterChange} fluid label="Diameter" value={diameter} />
-                    <Input type="color" onChange={handleColorChange} fluid label="Color" value={color} />
+                    {/* <Input placeholder="Width" type="number" onChange={handleWidthChange}  label="Width" value={widthOption} /> */}
+                    {/* <Input placeholder="Height" type="number" onChange={handlHeightChange}  label="Height" value={heightOption} /> */}
+                    <FormControl>
+                        <FormLabel style={{ color: "white", }}>Diameter</FormLabel>
+                        <Input placeholder="Diameter" type="number" onChange={handleDiameterChange} label="Diameter" value={diameter} />
+                    </FormControl>
+                    <FormControl>
+                    <FormLabel style={{ color: "white", }}>Color</FormLabel>
+                        <Input type="color" onChange={handleColorChange} label="Color" value={color} />
+                    </FormControl>
                 </>
             )}
 
             {selectedObject && selectedObject?.type === 'line' && (
                 <>
-                    <Input type="number" onChange={handleLineWidthChange} fluid label="Line Width" value={widthOption} />
-                    <Input type="color" onChange={handleColorChange} fluid label="Line Color" value={color} />
+                    <FormControl>
+                        <FormLabel style={{color:"white"}}>Width</FormLabel>
+                        <Input type="number" onChange={handleLineWidthChange} label="Line Width" value={widthOption} />
+                    </FormControl>
+                    <FormControl >
+                        <FormLabel style={{color:"white"}}>Color</FormLabel>
+                        <Input type="color" onChange={handleColorChange} label="Line Color" value={color} />
+                    </FormControl>
                 </>
             )}
         </div>

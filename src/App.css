@@ -79,3 +79,15 @@ body {
     padding: 0;
   }
 }
+
+
+.button-hover {
+  color: white; /* Color de texto normal */
+  transition: background-color 0.3s, color 0.3s; /* Transición suave */
+  transition: transform 0.3s;
+}
+
+.button-hover:hover {
+  color: #000000; /* Color de texto al hacer hover */
+  transform: scale(1.2);
+}

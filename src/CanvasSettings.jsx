@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
-import { Input } from "blocksin-system"
+import Input from '@mui/joy/Input';
+import FormLabel from '@mui/joy/FormLabel';
+import FormControl from '@mui/joy/FormControl';
 const CanvasSettings = ({ canvas }) => {
     const [canvasHeight, setCanvasHeight] = useState(600);
     const [canvasWidth, setCanvasWidth] = useState(600);
@@ -37,8 +39,14 @@ const CanvasSettings = ({ canvas }) => {
 
     return (
         <div className="canvasSettings darkmode">
-            <Input fluid label="Width" onChange={handleWidthChange} value={canvasWidth} />
-            <Input fluid label="Height" onChange={handleHeightChange} value={canvasHeight} />
+            <FormControl>
+                <FormLabel style={{ color: "white" }} l>Width</FormLabel>
+                <Input placeholder="Width" label="Width" onChange={handleWidthChange} value={canvasWidth} />
+            </FormControl>
+            <FormControl>
+                <FormLabel style={{ color: "white" }} l>Height</FormLabel>
+                <Input label="Height" onChange={handleHeightChange} value={canvasHeight} />
+            </FormControl>
         </div>
     )
 }
