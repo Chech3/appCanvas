@@ -32,7 +32,7 @@ const CanvasSettings = ({ canvas }) => {
         if (canvas) {
             canvas.setWidth(canvasWidth);
             canvas.setHeight(canvasHeight);
-            canvas.rennderAll;
+            canvas.renderAll();
         }
     }, [canvasHeight, canvasWidth, canvas])
 

@@ -2,14 +2,11 @@
 import { useState, useEffect, useRef } from "react";
 import { Canvas, Rect, Circle, Line } from "fabric";
 import "./App.css";
-import Input from '@mui/joy/Input';
-import Card from '@mui/joy/Card';
 import Button from '@mui/joy/Button';
 import { BsCircle, BsSquare, BsFillTrash3Fill, BsFillPencilFill } from "react-icons/bs";
-import Settings from "./settings";
+import Settings from "./Settings";
 import CanvasSettings from "./CanvasSettings";
 import { handleObjectMoving, clearGuideLines } from "./SnappingHelpers";
-
 
 
 const CanvasApp = () => {
